@@ -14,6 +14,8 @@ void ThreeBody::setupParticles(System &system) {
      * complicated three-body initialization only after you have a working
      * implementation of the two-body case.
      */
+
+    //Particle * earth = new Particle(vec3())
 }
 
 std::string ThreeBody::getName() {

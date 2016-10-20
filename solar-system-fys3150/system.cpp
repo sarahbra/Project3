@@ -11,8 +11,15 @@ using std::endl;
 
 
 void System::computeForces() {
+    for (int i=0; i<m_numberOfParticles; i++) {
+        for (int j=i+1; i<m_numberOfParticles; i++) {
+            m_potential->computeForces(m_particles.at(i), m_particles.at(j));
+        }
+    }
+
     /*
-     * Here you should sum over all particle pairs and compute the forces
+
+    * Here you should sum over all particle pairs and compute the forces
      * between each one. This should be done by the Potential::computeForces
      * method which takes pointers to two Particles as input. I.e. the forces
      * between particle i and particle j should be computed by
@@ -83,6 +90,10 @@ double System::computeKineticEnergy() {
      * Particle::velocitySquared which can be used here.
      */
     m_kineticEnergy = 0;
+    // for(int i = 0; i<m_numberOfParticles; i++) {
+    //     vec3 v_squared = m_particles.at(i).getVelocity();
+     //   m_kineticEnergy += m_particles.at(i).getMass()*v_squared;
+   // }
     return m_kineticEnergy;
 }
 

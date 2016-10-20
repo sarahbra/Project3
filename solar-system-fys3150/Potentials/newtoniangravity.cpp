@@ -6,6 +6,10 @@ NewtonianGravity::NewtonianGravity(double G) : m_G(G) {
 }
 
 void NewtonianGravity::computeForces(Particle& a, Particle& b) {
+    double mass1 = a.getMass();
+    double mass2 = b.getMass();
+
+
     /*
      * This is where the ordinary Newtoninan gravity forces and potential
      * energies should be calculated. This method is called by the System
