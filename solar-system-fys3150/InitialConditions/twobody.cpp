@@ -6,7 +6,7 @@
 
 void TwoBody::setupParticles(System &system) {
 
-    double pi = 3.14159265359;
+    double pi = std::atan(1)*4;
     double vy = 2*pi;
 
     Particle* largeBody = new Particle(vec3(0,0,0), vec3(0,0,0), 2e30);

@@ -20,7 +20,7 @@ void Examples::twoBodyProblem() {
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
     twoBodySystem->removeLinearMomentum ();
-    twoBodySystem->integrate            (20000);
+    twoBodySystem->integrate            (200000);
 
 }
 
