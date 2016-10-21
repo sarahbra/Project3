@@ -3,6 +3,10 @@
 #include "Potentials/potential.h"
 #include "InitialConditions/initialcondition.h"
 #include "particle.h"
+<<<<<<< HEAD
+
+=======
+>>>>>>> c40fe2f0d1c42d44589321f448342edafefd7a9d
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -10,6 +14,25 @@ using std::endl;
 
 
 void System::computeForces() {
+<<<<<<< HEAD
+    /*
+     * Here you should sum over all particle pairs and compute the forces
+     * between each one. This should be done by the Potential::computeForces
+     * method which takes pointers to two Particles as input. I.e. the forces
+     * between particle i and particle j should be computed by
+     *
+     *      m_potential->computeForces(m_particles.at(i), m_particles.at(j));
+     *
+     * Note: It is important that you do not sum over each particle pair more
+     * than once. A simple way to ensure this is done is by a double foor loop,
+     * one running from i=0...n, and the other running from j=i+1...n. You
+     * should convince yourself that this is true before you implement this
+     * loop.
+     */
+    m_potential->computeForces(*m_particles.at(0), *m_particles.at(1));
+    resetAllForces();
+    m_potential->resetPotentialEnergy();
+=======
     for (int i=0; i<m_numberOfParticles; i++) {
         for (int j=i+1; i<m_numberOfParticles; i++) {
             Particle *a = m_particles.at(i);
@@ -17,6 +40,7 @@ void System::computeForces() {
             m_potential->computeForces(*a, *b);
         }
     }
+>>>>>>> c40fe2f0d1c42d44589321f448342edafefd7a9d
 }
 
 void System::resetAllForces() {
@@ -26,8 +50,13 @@ void System::resetAllForces() {
 }
 
 void System::setPotential(Potential* potential) {
+<<<<<<< HEAD
+    std::cout << potential << std::endl;
+    m_potential = potential;
+=======
     m_potential = potential;
     cout << m_potential << endl;
+>>>>>>> c40fe2f0d1c42d44589321f448342edafefd7a9d
 }
 
 void System::setIntegrator(Integrator* integrator) {
@@ -50,8 +79,11 @@ void System::integrate(int numberOfSteps) {
         m_integrator->integrateOneStep(m_particles);
         printIntegrateInfo(i);
         writePositionsToFile();
+<<<<<<< HEAD
+=======
         resetAllForces();
         m_potential->resetPotentialEnergy();
+>>>>>>> c40fe2f0d1c42d44589321f448342edafefd7a9d
     }
     closeOutFile();
 }
@@ -76,12 +108,22 @@ double System::computeKineticEnergy() {
      * Particle::velocitySquared which can be used here.
      */
     m_kineticEnergy = 0;
+<<<<<<< HEAD
     for(int i = 0; i<m_numberOfParticles; i++) {
         Particle *p = m_particles.at(i);
         double v_squared = p->velocitySquared();
         m_kineticEnergy += p->getMass()*v_squared;
         std::cout << "kE" << m_kineticEnergy << std::endl;
     }
+=======
+<<<<<<< HEAD
+=======
+    // for(int i = 0; i<m_numberOfParticles; i++) {
+    //     vec3 v_squared = m_particles.at(i).getVelocity();
+     //   m_kineticEnergy += m_particles.at(i).getMass()*v_squared;
+   // }
+>>>>>>> c40fe2f0d1c42d44589321f448342edafefd7a9d
+>>>>>>> 0ea5d3a2e687503735782e6f23be4b65bfc7efdf
     return m_kineticEnergy;
 }
 
@@ -144,6 +186,11 @@ void System::writePositionsToFile() {
      *
      * Which format you choose for the data file is up to you.
      */
+<<<<<<< HEAD
+    m_outFile << "x" << endl;
+
+=======
+>>>>>>> c40fe2f0d1c42d44589321f448342edafefd7a9d
 }
 
 void System::closeOutFile() {

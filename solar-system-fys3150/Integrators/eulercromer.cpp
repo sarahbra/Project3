@@ -1,5 +1,6 @@
 #include "eulercromer.h"
 #include "../system.h"
+
 #include <iostream>
 using namespace std;
 EulerCromer::EulerCromer(System* system)
@@ -16,8 +17,10 @@ void EulerCromer::integrateOneStep(std::vector<Particle*> particles) {
         vec3 a = F/m;
         p->getVelocity().operator +=(a*dt);
         p->getPosition().operator +=(p->getVelocity()*dt);
+
         std:: cout << "v" << p->getVelocity() << "r" << p->getPosition() << endl;
     }
+
 }
 
 std::string EulerCromer::getName() {

@@ -11,10 +11,6 @@ Particle::Particle(vec3 position, vec3 velocity, double mass) {
     m_mass      = mass;
 }
 
-void Particle::setPosVel(vec3 position, vec3 velocity){
-    m_position = position;
-    m_velocity = velocity;
-}
 
 void Particle::resetForces() {
     m_forces[0] = 0;

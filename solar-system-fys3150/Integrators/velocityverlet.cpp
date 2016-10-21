@@ -1,6 +1,8 @@
 #include "velocityverlet.h"
 #include "../system.h"
+
 #include <iostream>
+
 
 VelocityVerlet::VelocityVerlet(System* system)
     : Integrator(system) {
@@ -11,6 +13,9 @@ std::string VelocityVerlet::getName() {
 }
 
 void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
+
+    m_system->computeForces();
+
     for (int i = 0; i < particles.size(); i++) {
         Particle *p = particles.at(i);
         double dt = getDt();
@@ -19,6 +24,6 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
         p->getPosition().operator +=(dt*p->getVelocity().operator +=(a1*(dt*dt)/2.0));
         vec3 a2 = p->getForce()/m;
         p->getVelocity().operator +=(dt/2.0*a2.operator +=(a1));
-        std::cout << "r" << p->getPosition() << "v" << p->getVelocity() << std::endl;
+
     }
 }

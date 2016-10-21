@@ -14,7 +14,7 @@ public:
     void resetForces();
     void addForce(double dFx, double dFy, double dFz);
     double velocitySquared();
-    void setPosVel(class vec3 position, class vec3 velocity);
+
 
     // Getters.
     vec3& getPosition() { return m_position; }
