@@ -3,6 +3,7 @@
 #include "Potentials/potential.h"
 #include "InitialConditions/initialcondition.h"
 #include "particle.h"
+
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -10,6 +11,12 @@ using std::endl;
 
 
 void System::computeForces() {
+
+
+    resetAllForces();
+    m_potential->resetPotentialEnergy();
+
+
     /*
      * Here you should sum over all particle pairs and compute the forces
      * between each one. This should be done by the Potential::computeForces
@@ -24,8 +31,7 @@ void System::computeForces() {
      * should convince yourself that this is true before you implement this
      * loop.
      */
-    resetAllForces();
-    m_potential->resetPotentialEnergy();
+
     for (int i=0; i<m_numberOfParticles; i++) {
         for (int j=i+1; i<m_numberOfParticles; i++) {
             Particle *a = m_particles.at(i);
@@ -76,6 +82,7 @@ void System::addParticle(Particle* p) {
 
 double System::computeKineticEnergy() {
     m_kineticEnergy = 0;
+
     for(int i = 0; i<m_numberOfParticles; i++) {
         Particle *p = m_particles.at(i);
         double v_squared = p->velocitySquared();
@@ -143,7 +150,9 @@ void System::writePositionsToFile() {
      *
      * Which format you choose for the data file is up to you.
      */
-    m_outFile << "x" << endl;
+
+
+    //m_outFile <<  << endl;
 }
 
 void System::closeOutFile() {
