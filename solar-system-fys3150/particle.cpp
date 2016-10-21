@@ -11,6 +11,7 @@ Particle::Particle(vec3 position, vec3 velocity, double mass) {
     m_mass      = mass;
 }
 
+
 void Particle::resetForces() {
     m_forces[0] = 0;
     m_forces[1] = 0;

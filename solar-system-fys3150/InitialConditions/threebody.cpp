@@ -14,6 +14,7 @@ void ThreeBody::setupParticles(System &system) {
      * complicated three-body initialization only after you have a working
      * implementation of the two-body case.
      */
+
 }
 
 std::string ThreeBody::getName() {

@@ -15,6 +15,7 @@ public:
     void addForce(double dFx, double dFy, double dFz);
     double velocitySquared();
 
+
     // Getters.
     vec3& getPosition() { return m_position; }
     vec3& getVelocity() { return m_velocity; }

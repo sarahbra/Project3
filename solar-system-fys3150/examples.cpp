@@ -21,6 +21,7 @@ void Examples::twoBodyProblem() {
     twoBodySystem->setFileWriting       (true);
     twoBodySystem->removeLinearMomentum ();
     twoBodySystem->integrate            (5000);
+
 }
 
 void Examples::threeBodyProblem() {
