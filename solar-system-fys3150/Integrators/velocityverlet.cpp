@@ -20,10 +20,20 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
         Particle *p = particles.at(i);
         double dt = getDt();
         double m = p->getMass();
+
+
         vec3 a1 = p->getForce().operator /=(m);
-        p->getPosition().operator +=((p->getVelocity().operator *=(dt)).operator +=(a1.operator *=(dt*dt)/2.0));
+        vec3 hv = p->getVelocity().operator *=(dt);
+        double temp = dt/2;
+        p->getPosition().operator +=(hv);
+        vec3 tempa = a1.operator *=(temp*dt);
+        p->getPosition().operator +=(tempa);
+
+
         m_system->computeForces();
         vec3 a2 = p->getForce().operator /=(m);
-        p->getVelocity().operator +=((a2.operator *=(dt/2.0)).operator +=(a1));
+        a2.operator +=(a1);
+        a2.operator *=(temp);
+        p->getVelocity().operator +=(a2);
     }
 }

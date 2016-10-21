@@ -7,9 +7,9 @@
 void ThreeBody::setupParticles(System &system) {
     double pi = std::atan(1.0)*4;
 
-    Particle* sun = new Particle(vec3(0,0,0), vec3(0,0,0), 2e30);
-    Particle* earth = new Particle(vec3(1,0,0), vec3(0,2*pi,0), 6e24);
-    Particle* jupiter = new Particle(vec3(5.2,0,0), vec3(0,0,0), 1.9e27);
+    Particle* sun = new Particle(vec3(0,0,0), vec3(0,0,0), 1);
+    Particle* earth = new Particle(vec3(1,0,0), vec3(0,2*pi,0), 3e-6);
+    Particle* jupiter = new Particle(vec3(5.2,0,0), vec3(0,0,0), 9.5e-4);
     system.addParticle(sun);
     system.addParticle(earth);
     system.addParticle(jupiter);

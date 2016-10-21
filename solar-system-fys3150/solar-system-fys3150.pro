@@ -8,25 +8,25 @@ SOURCES += main.cpp \
     system.cpp \
     particle.cpp \
     Integrators/integrator.cpp \
-    Integrators/eulercromer.cpp \
     Potentials/potential.cpp \
     Potentials/newtoniangravity.cpp \
     examples.cpp \
     Integrators/velocityverlet.cpp \
     InitialConditions/initialcondition.cpp \
     InitialConditions/twobody.cpp \
-    InitialConditions/threebody.cpp
+    InitialConditions/threebody.cpp \
+    Integrators/euler.cpp
 
 HEADERS += \
     vec3.h \
     system.h \
     particle.h \
     Integrators/integrator.h \
-    Integrators/eulercromer.h \
     Potentials/potential.h \
     Potentials/newtoniangravity.h \
     examples.h \
     Integrators/velocityverlet.h \
     InitialConditions/initialcondition.h \
     InitialConditions/twobody.h \
-    InitialConditions/threebody.h
+    InitialConditions/threebody.h \
+    Integrators/euler.h

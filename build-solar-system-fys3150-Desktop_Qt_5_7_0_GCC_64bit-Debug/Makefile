@@ -53,27 +53,27 @@ SOURCES       = ../solar-system-fys3150/main.cpp \
 		../solar-system-fys3150/system.cpp \
 		../solar-system-fys3150/particle.cpp \
 		../solar-system-fys3150/Integrators/integrator.cpp \
-		../solar-system-fys3150/Integrators/eulercromer.cpp \
 		../solar-system-fys3150/Potentials/potential.cpp \
 		../solar-system-fys3150/Potentials/newtoniangravity.cpp \
 		../solar-system-fys3150/examples.cpp \
 		../solar-system-fys3150/Integrators/velocityverlet.cpp \
 		../solar-system-fys3150/InitialConditions/initialcondition.cpp \
 		../solar-system-fys3150/InitialConditions/twobody.cpp \
-		../solar-system-fys3150/InitialConditions/threebody.cpp 
+		../solar-system-fys3150/InitialConditions/threebody.cpp \
+		../solar-system-fys3150/Integrators/euler.cpp 
 OBJECTS       = main.o \
 		vec3.o \
 		system.o \
 		particle.o \
 		integrator.o \
-		eulercromer.o \
 		potential.o \
 		newtoniangravity.o \
 		examples.o \
 		velocityverlet.o \
 		initialcondition.o \
 		twobody.o \
-		threebody.o
+		threebody.o \
+		euler.o
 DIST          = /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/common/unix.conf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -221,26 +221,26 @@ DIST          = /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		system.h \
 		particle.h \
 		Integrators/integrator.h \
-		Integrators/eulercromer.h \
 		Potentials/potential.h \
 		Potentials/newtoniangravity.h \
 		examples.h \
 		Integrators/velocityverlet.h \
 		InitialConditions/initialcondition.h \
 		InitialConditions/twobody.h \
-		InitialConditions/threebody.h ../solar-system-fys3150/main.cpp \
+		InitialConditions/threebody.h \
+		Integrators/euler.h ../solar-system-fys3150/main.cpp \
 		../solar-system-fys3150/vec3.cpp \
 		../solar-system-fys3150/system.cpp \
 		../solar-system-fys3150/particle.cpp \
 		../solar-system-fys3150/Integrators/integrator.cpp \
-		../solar-system-fys3150/Integrators/eulercromer.cpp \
 		../solar-system-fys3150/Potentials/potential.cpp \
 		../solar-system-fys3150/Potentials/newtoniangravity.cpp \
 		../solar-system-fys3150/examples.cpp \
 		../solar-system-fys3150/Integrators/velocityverlet.cpp \
 		../solar-system-fys3150/InitialConditions/initialcondition.cpp \
 		../solar-system-fys3150/InitialConditions/twobody.cpp \
-		../solar-system-fys3150/InitialConditions/threebody.cpp
+		../solar-system-fys3150/InitialConditions/threebody.cpp \
+		../solar-system-fys3150/Integrators/euler.cpp
 QMAKE_TARGET  = solar-system-fys3150
 DESTDIR       = 
 TARGET        = solar-system-fys3150
@@ -608,13 +608,6 @@ integrator.o: ../solar-system-fys3150/Integrators/integrator.cpp ../solar-system
 		../solar-system-fys3150/system.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o integrator.o ../solar-system-fys3150/Integrators/integrator.cpp
 
-eulercromer.o: ../solar-system-fys3150/Integrators/eulercromer.cpp ../solar-system-fys3150/Integrators/eulercromer.h \
-		../solar-system-fys3150/Integrators/integrator.h \
-		../solar-system-fys3150/particle.h \
-		../solar-system-fys3150/vec3.h \
-		../solar-system-fys3150/system.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o eulercromer.o ../solar-system-fys3150/Integrators/eulercromer.cpp
-
 potential.o: ../solar-system-fys3150/Potentials/potential.cpp ../solar-system-fys3150/Potentials/potential.h \
 		../solar-system-fys3150/particle.h \
 		../solar-system-fys3150/vec3.h
@@ -630,7 +623,7 @@ examples.o: ../solar-system-fys3150/examples.cpp ../solar-system-fys3150/example
 		../solar-system-fys3150/system.h \
 		../solar-system-fys3150/particle.h \
 		../solar-system-fys3150/vec3.h \
-		../solar-system-fys3150/Integrators/eulercromer.h \
+		../solar-system-fys3150/Integrators/euler.h \
 		../solar-system-fys3150/Integrators/integrator.h \
 		../solar-system-fys3150/Integrators/velocityverlet.h \
 		../solar-system-fys3150/Potentials/newtoniangravity.h \
@@ -665,6 +658,13 @@ threebody.o: ../solar-system-fys3150/InitialConditions/threebody.cpp ../solar-sy
 		../solar-system-fys3150/vec3.h \
 		../solar-system-fys3150/system.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o threebody.o ../solar-system-fys3150/InitialConditions/threebody.cpp
+
+euler.o: ../solar-system-fys3150/Integrators/euler.cpp ../solar-system-fys3150/Integrators/euler.h \
+		../solar-system-fys3150/Integrators/integrator.h \
+		../solar-system-fys3150/particle.h \
+		../solar-system-fys3150/vec3.h \
+		../solar-system-fys3150/system.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o euler.o ../solar-system-fys3150/Integrators/euler.cpp
 
 ####### Install
 

@@ -15,7 +15,7 @@ void System::computeForces() {
     m_potential->resetPotentialEnergy();
 
     for (int i=0; i<m_numberOfParticles; i++) {
-        for (int j=i+1; i<m_numberOfParticles; i++) {
+        for (int j=i+1; j<m_numberOfParticles; j++) {
             Particle *a = m_particles.at(i);
             Particle *b = m_particles.at(j);
             m_potential->computeForces(*a, *b);
@@ -137,7 +137,7 @@ void System::writePositionsToFile() {
     double x = r[0];
     double y = r[1];
 
-    m_outFile << x <<  "  " << y << "  " << endl;
+    m_outFile << x <<  "," << y << endl;
 }
 
 void System::closeOutFile() {
