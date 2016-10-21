@@ -16,7 +16,7 @@ void Examples::twoBodyProblem() {
 
     System* twoBodySystem = new System();
     twoBodySystem->setIntegrator        (new EulerCromer(twoBodySystem));
-    twoBodySystem->setPotential         (new Potential());
+    twoBodySystem->setPotential         (new NewtonianGravity(G));
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
     twoBodySystem->removeLinearMomentum ();

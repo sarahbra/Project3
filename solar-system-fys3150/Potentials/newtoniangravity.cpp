@@ -1,13 +1,14 @@
 #include "newtoniangravity.h"
 #include <iostream>
+#include <cmath>
 
 NewtonianGravity::NewtonianGravity(double G) : m_G(G) {
 
 }
 
-void NewtonianGravity::computeForces(Particle& a, Particle& b) {
-    double mass1 = a.getMass();
-    double mass2 = b.getMass();
+void NewtonianGravity::computeForces(Particle &a, Particle &b) {
+    double m1 = a.getMass();
+    double m2 = b.getMass();
 
 
     /*
@@ -38,11 +39,11 @@ void NewtonianGravity::computeForces(Particle& a, Particle& b) {
     //b.addForce(...);
     //vec3 m1 = a.getMass();
     //vec3 m2 = b.getMass();
-    //vec3 r1 = a.getPosition();
-    //vec3 r2 = b.getPosition();
-    //double x =
+    vec3 r1 = a.getPosition();
+    vec3 r2 = b.getPosition();
 
     //Fx = -(m1*m2*m_G(G))
+    //Fy = -(m1*)
 
 
 }

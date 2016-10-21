@@ -11,10 +11,10 @@ std::string VelocityVerlet::getName() {
 
 void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
     for (int i = 0; i < particles.size(); i++) {
-        Particle *p = particles.at(i);
-        vec3 pos = p->getposition();
-        vec3 vel = p->getVelocity();
-        double dt = Integrator.getDt();
+        //Particle *p = particles.at(i);
+        //vec3 pos = p->getPosition();
+        //vec3 vel = p->getVelocity();
+        //double dt = Integrator.getDt();
 
 
     }
