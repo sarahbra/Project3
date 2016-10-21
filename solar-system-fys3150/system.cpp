@@ -154,8 +154,9 @@ void System::writePositionsToFile() {
     vec3 r = p->getPosition();
     double x = r[0];
     double y = r[1];
+    double r_length = r.length();
 
-    m_outFile << x <<  "   " << y << endl;
+    m_outFile << x <<  "   " << y << "  " << r_length << endl;
 }
 
 void System::closeOutFile() {

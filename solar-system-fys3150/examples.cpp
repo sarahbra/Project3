@@ -12,16 +12,20 @@
 
 
 void Examples::twoBodyProblem() {
+<<<<<<< HEAD
     double pi = std::atan(1)*4;
     double G = (4*pi*pi)/(2e30);
+=======
+    double G = 1.974e-29;
+>>>>>>> 0a4e42c484f3cb6651e97493daa5872cb21bead4
 
     System* twoBodySystem = new System();
-    twoBodySystem->setIntegrator        (new EulerCromer(twoBodySystem));
+    twoBodySystem->setIntegrator        (new VelocityVerlet(twoBodySystem));
     twoBodySystem->setPotential         (new NewtonianGravity(G));
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
     twoBodySystem->removeLinearMomentum ();
-    twoBodySystem->integrate            (5000);
+    twoBodySystem->integrate            (20000);
 
 }
 

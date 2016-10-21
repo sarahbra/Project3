@@ -14,9 +14,18 @@ void EulerCromer::integrateOneStep(std::vector<Particle*> particles) {
         double m = p->getMass();
         vec3 F = p->getForce();
         double dt = getDt();
+<<<<<<< HEAD
         vec3 a = F.operator /=(m);
         p->getVelocity().operator +=(a.operator *=(dt));
         p->getPosition().operator +=(p->getVelocity().operator *=(dt));
+=======
+        F.operator /=(m);
+        F.operator *=(dt);
+        p->getVelocity().operator +=(F);
+        p->getPosition().operator +=(p->getVelocity().operator *=(dt));
+        cout << "euler"<<endl;
+
+>>>>>>> 0a4e42c484f3cb6651e97493daa5872cb21bead4
     }
 
 }
