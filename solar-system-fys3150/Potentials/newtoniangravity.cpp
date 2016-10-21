@@ -21,7 +21,6 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
     Fx = (-(m1*m2)*m_G)/pow(r_length,3)*r[0];
     Fy = (-(m1*m2)*m_G)/pow(r_length,3)*r[1];
     b.addForce(Fx, Fy, 0);
-
 }
 
 std::string NewtonianGravity::getName() {

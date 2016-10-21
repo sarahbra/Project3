@@ -12,8 +12,25 @@ using std::endl;
 
 void System::computeForces() {
 
+
     resetAllForces();
     m_potential->resetPotentialEnergy();
+
+
+    /*
+     * Here you should sum over all particle pairs and compute the forces
+     * between each one. This should be done by the Potential::computeForces
+     * method which takes pointers to two Particles as input. I.e. the forces
+     * between particle i and particle j should be computed by
+     *
+     *      m_potential->computeForces(m_particles.at(i), m_particles.at(j));
+     *
+     * Note: It is important that you do not sum over each particle pair more
+     * than once. A simple way to ensure this is done is by a double foor loop,
+     * one running from i=0...n, and the other running from j=i+1...n. You
+     * should convince yourself that this is true before you implement this
+     * loop.
+     */
 
     for (int i=0; i<m_numberOfParticles; i++) {
         for (int j=i+1; i<m_numberOfParticles; i++) {
@@ -31,7 +48,6 @@ void System::resetAllForces() {
 }
 
 void System::setPotential(Potential* potential) {
-
     m_potential = potential;
 }
 
@@ -55,7 +71,6 @@ void System::integrate(int numberOfSteps) {
         m_integrator->integrateOneStep(m_particles);
         printIntegrateInfo(i);
         writePositionsToFile();
-
     }
     closeOutFile();
 }
@@ -81,11 +96,12 @@ double System::computeKineticEnergy() {
      */
     m_kineticEnergy = 0;
 
-    // for(int i = 0; i<m_numberOfParticles; i++) {
-    //     vec3 v_squared = m_particles.at(i).getVelocity();
-     //   m_kineticEnergy += m_particles.at(i).getMass()*v_squared;
-   // }
-
+    for(int i = 0; i<m_numberOfParticles; i++) {
+        Particle *p = m_particles.at(i);
+        double v_squared = p->velocitySquared();
+        m_kineticEnergy += p->getMass()*v_squared;
+        std::cout << "kE" << m_kineticEnergy << std::endl;
+    }
     return m_kineticEnergy;
 }
 
@@ -149,8 +165,8 @@ void System::writePositionsToFile() {
      * Which format you choose for the data file is up to you.
      */
 
-    //m_outFile <<  << endl;
 
+    //m_outFile <<  << endl;
 }
 
 void System::closeOutFile() {
