@@ -3,7 +3,6 @@
 #include "Potentials/potential.h"
 #include "InitialConditions/initialcondition.h"
 #include "particle.h"
-
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -25,7 +24,10 @@ void System::computeForces() {
      * should convince yourself that this is true before you implement this
      * loop.
      */
-    resetAllForces();
+    Particle *a = m_particles.at(0);
+    Particle *b = m_particles.at(1);
+    m_potential->computeForces(*a,*b);
+    //resetAllForces();
     m_potential->resetPotentialEnergy();
 }
 
@@ -37,6 +39,7 @@ void System::resetAllForces() {
 
 void System::setPotential(Potential* potential) {
     m_potential = potential;
+    cout << m_potential << endl;
 }
 
 void System::setIntegrator(Integrator* integrator) {
@@ -59,6 +62,7 @@ void System::integrate(int numberOfSteps) {
         m_integrator->integrateOneStep(m_particles);
         printIntegrateInfo(i);
         writePositionsToFile();
+        resetAllForces();
     }
     closeOutFile();
 }

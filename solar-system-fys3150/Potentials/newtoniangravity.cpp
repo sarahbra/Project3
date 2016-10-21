@@ -32,6 +32,7 @@ void NewtonianGravity::computeForces(Particle& a, Particle& b) {
     //m_potentialEnergy += V;
     //a.addForce(dFx, dFy, dFz);
     //b.addForce(...);
+
 }
 
 std::string NewtonianGravity::getName() {
