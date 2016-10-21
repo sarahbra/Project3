@@ -42,7 +42,6 @@ void System::resetAllForces() {
 }
 
 void System::setPotential(Potential* potential) {
-    std::cout << potential << std::endl;
     m_potential = potential;
 }
 
@@ -76,25 +75,11 @@ void System::addParticle(Particle* p) {
 }
 
 double System::computeKineticEnergy() {
-    /*
-     * Here, the kinetic energy of the entire system should be computed. Since
-     * this is independent of the potential in use, we place this method
-     * directly in the system class.
-     *
-     * Remember that you can access the mass and velocity of particle i by
-     *
-     *      m_particles.at(i)->getMass()
-     *      m_particles.at(i)->getVelocity()
-     *
-     * Remember also that the Particle class has a built in method
-     * Particle::velocitySquared which can be used here.
-     */
     m_kineticEnergy = 0;
     for(int i = 0; i<m_numberOfParticles; i++) {
         Particle *p = m_particles.at(i);
         double v_squared = p->velocitySquared();
         m_kineticEnergy += p->getMass()*v_squared;
-        std::cout << "kE" << m_kineticEnergy << std::endl;
     }
     return m_kineticEnergy;
 }
