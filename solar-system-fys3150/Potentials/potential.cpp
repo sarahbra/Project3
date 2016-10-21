@@ -7,14 +7,12 @@ void Potential::computeForces(Particle &a, Particle &b){
     double m = b.getMass();
     vec3 r = b.getPosition();
 
-    double x = r[0];
-    double y = r[1];
     double Fx, Fy, temp, radii;
     const double pi = 3.1415926535897;
     radii = r.length();
     temp = ((m*4*pi*pi)/pow(radii,3));
-    Fx = -temp*x;
-    Fy = -temp*y;
+    Fx = -temp*r[0];
+    Fy = -temp*r[1];
 
     b.addForce(Fx,Fy,0);
 }

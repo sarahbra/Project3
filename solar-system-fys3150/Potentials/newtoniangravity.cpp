@@ -10,42 +10,14 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
     double m1 = a.getMass();
     double m2 = b.getMass();
 
+    double Fx, Fy;
 
-    /*
-     * This is where the ordinary Newtoninan gravity forces and potential
-     * energies should be calculated. This method is called by the System
-     * class in System::computeForces, for all particle pairs a and b.
-     *
-     * Note that you may access the mass and the position of the particles a
-     * and b by
-     *
-     *      a.getMass();       b.getMass();
-     *      a.getPosition();   b.getPosition();
-     *
-     * In order to apply the forces to each particle, it is easiest to use the
-     * Particle::addForce method.
-     *
-     * Since calculating the forces between a and b almost inevitably involves
-     * calculating the potential energy, V(r), it is assumed by the Potential
-     * class that this quantity is calculated here and added to the
-     * m_potentialEnergy variable. Note: You may skip this until you have a
-     * working two-body problem, since the calculation of the potential energy
-     * is only neccessary for verification purposes later.
-     */
+    vec3 r = b.getPosition();
+    double r_length = r.length();
 
-    // ...
-    //m_potentialEnergy += V;
-    //a.addForce(dFx, dFy, dFz);
-    //b.addForce(...);
-    //vec3 m1 = a.getMass();
-    //vec3 m2 = b.getMass();
-    vec3 r1 = a.getPosition();
-    vec3 r2 = b.getPosition();
-
-    //Fx = -(m1*m2*m_G(G))
-    //Fy = -(m1*)
-
-
+    Fx = (-(m1*m2)*m_G)/pow(r_length,3)*r[0];
+    Fy = (-(m1*m2)*m_G)/pow(r_length,3)*r[1];
+    a.addForce(Fx, Fy, 0);
 }
 
 std::string NewtonianGravity::getName() {
