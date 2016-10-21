@@ -9,28 +9,10 @@ using std::cout;
 using std::endl;
 
 
-
 void System::computeForces() {
-
 
     resetAllForces();
     m_potential->resetPotentialEnergy();
-
-
-    /*
-     * Here you should sum over all particle pairs and compute the forces
-     * between each one. This should be done by the Potential::computeForces
-     * method which takes pointers to two Particles as input. I.e. the forces
-     * between particle i and particle j should be computed by
-     *
-     *      m_potential->computeForces(m_particles.at(i), m_particles.at(j));
-     *
-     * Note: It is important that you do not sum over each particle pair more
-     * than once. A simple way to ensure this is done is by a double foor loop,
-     * one running from i=0...n, and the other running from j=i+1...n. You
-     * should convince yourself that this is true before you implement this
-     * loop.
-     */
 
     for (int i=0; i<m_numberOfParticles; i++) {
         for (int j=i+1; i<m_numberOfParticles; i++) {
@@ -154,9 +136,8 @@ void System::writePositionsToFile() {
     vec3 r = p->getPosition();
     double x = r[0];
     double y = r[1];
-    double r_length = r.length();
 
-    m_outFile << x <<  "   " << y << "  " << r_length << endl;
+    m_outFile << x <<  "  " << y << "  " << endl;
 }
 
 void System::closeOutFile() {

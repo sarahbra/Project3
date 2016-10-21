@@ -10,10 +10,10 @@
 #include <iostream>
 #include <cmath>
 
+double pi = std::atan(1)*4;
+double G = (4*pi*pi)/(2e30);
 
 void Examples::twoBodyProblem() {
-    double pi = std::atan(1)*4;
-    double G = (4*pi*pi)/(2e30);
 
     System* twoBodySystem = new System();
     twoBodySystem->setIntegrator        (new VelocityVerlet(twoBodySystem));
@@ -25,7 +25,15 @@ void Examples::twoBodyProblem() {
 
 }
 
-void Examples::threeBodyProblem() {
+// void Examples::threeBodyProblem() {
+//    System* threeBodySystem = new System();
+//    threeBodySystem->setIntegrator         (new VelocityVerlet(threeBodySystem));
+//    threeBodySystem->setPotential          (new NewtonianGravity(G));
+//    threeBodySystem->setInitialCondition   (new ThreeBody());
+//    threeBodySystem->setFileWriting        (true);
+//    threeBodySystem->removeLinearMomentum  ();
+//    threeBodySystem->integrate             (200000);
+
     /*
      * This is where you should set up a three-body problem, using the
      * InitialCondition::ThreeBody class as System's InitialCondition.
@@ -34,4 +42,4 @@ void Examples::threeBodyProblem() {
      * Examples::twoBodyProblem, before continuing with this more complicated
      * case.
      */
-}
+// }

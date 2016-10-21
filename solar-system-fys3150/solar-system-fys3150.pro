@@ -13,7 +13,6 @@ SOURCES += main.cpp \
     Potentials/newtoniangravity.cpp \
     examples.cpp \
     Integrators/velocityverlet.cpp \
-    Potentials/nopotential.cpp \
     InitialConditions/initialcondition.cpp \
     InitialConditions/twobody.cpp \
     InitialConditions/threebody.cpp
@@ -28,7 +27,6 @@ HEADERS += \
     Potentials/newtoniangravity.h \
     examples.h \
     Integrators/velocityverlet.h \
-    Potentials/nopotential.h \
     InitialConditions/initialcondition.h \
     InitialConditions/twobody.h \
     InitialConditions/threebody.h

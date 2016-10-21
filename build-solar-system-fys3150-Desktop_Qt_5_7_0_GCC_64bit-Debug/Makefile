@@ -58,7 +58,6 @@ SOURCES       = ../solar-system-fys3150/main.cpp \
 		../solar-system-fys3150/Potentials/newtoniangravity.cpp \
 		../solar-system-fys3150/examples.cpp \
 		../solar-system-fys3150/Integrators/velocityverlet.cpp \
-		../solar-system-fys3150/Potentials/nopotential.cpp \
 		../solar-system-fys3150/InitialConditions/initialcondition.cpp \
 		../solar-system-fys3150/InitialConditions/twobody.cpp \
 		../solar-system-fys3150/InitialConditions/threebody.cpp 
@@ -72,7 +71,6 @@ OBJECTS       = main.o \
 		newtoniangravity.o \
 		examples.o \
 		velocityverlet.o \
-		nopotential.o \
 		initialcondition.o \
 		twobody.o \
 		threebody.o
@@ -207,6 +205,7 @@ DIST          = /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		../solar-system-fys3150/.qmake.stash \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -227,7 +226,6 @@ DIST          = /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		Potentials/newtoniangravity.h \
 		examples.h \
 		Integrators/velocityverlet.h \
-		Potentials/nopotential.h \
 		InitialConditions/initialcondition.h \
 		InitialConditions/twobody.h \
 		InitialConditions/threebody.h ../solar-system-fys3150/main.cpp \
@@ -240,7 +238,6 @@ DIST          = /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../solar-system-fys3150/Potentials/newtoniangravity.cpp \
 		../solar-system-fys3150/examples.cpp \
 		../solar-system-fys3150/Integrators/velocityverlet.cpp \
-		../solar-system-fys3150/Potentials/nopotential.cpp \
 		../solar-system-fys3150/InitialConditions/initialcondition.cpp \
 		../solar-system-fys3150/InitialConditions/twobody.cpp \
 		../solar-system-fys3150/InitialConditions/threebody.cpp
@@ -386,6 +383,7 @@ Makefile: ../solar-system-fys3150/solar-system-fys3150.pro /home/sarah/Qt5.7.0/5
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		/home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -530,6 +528,7 @@ Makefile: ../solar-system-fys3150/solar-system-fys3150.pro /home/sarah/Qt5.7.0/5
 /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf:
 /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf:
 /home/sarah/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf:
@@ -636,7 +635,6 @@ examples.o: ../solar-system-fys3150/examples.cpp ../solar-system-fys3150/example
 		../solar-system-fys3150/Integrators/velocityverlet.h \
 		../solar-system-fys3150/Potentials/newtoniangravity.h \
 		../solar-system-fys3150/Potentials/potential.h \
-		../solar-system-fys3150/Potentials/nopotential.h \
 		../solar-system-fys3150/InitialConditions/twobody.h \
 		../solar-system-fys3150/InitialConditions/initialcondition.h \
 		../solar-system-fys3150/InitialConditions/threebody.h
@@ -648,12 +646,6 @@ velocityverlet.o: ../solar-system-fys3150/Integrators/velocityverlet.cpp ../sola
 		../solar-system-fys3150/vec3.h \
 		../solar-system-fys3150/system.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o velocityverlet.o ../solar-system-fys3150/Integrators/velocityverlet.cpp
-
-nopotential.o: ../solar-system-fys3150/Potentials/nopotential.cpp ../solar-system-fys3150/Potentials/nopotential.h \
-		../solar-system-fys3150/Potentials/potential.h \
-		../solar-system-fys3150/particle.h \
-		../solar-system-fys3150/vec3.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nopotential.o ../solar-system-fys3150/Potentials/nopotential.cpp
 
 initialcondition.o: ../solar-system-fys3150/InitialConditions/initialcondition.cpp ../solar-system-fys3150/InitialConditions/initialcondition.h \
 		../solar-system-fys3150/particle.h \

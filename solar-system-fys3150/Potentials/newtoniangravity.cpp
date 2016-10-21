@@ -1,6 +1,5 @@
 #include "newtoniangravity.h"
 #include <iostream>
-
 #include <cmath>
 
 
@@ -15,10 +14,11 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
 
     double Fx, Fy;
 
-    vec3 r = b.getPosition();
-    double r_length = r.length();
-    Fx = (-(m1*m2)*m_G)/pow(r_length,3)*r[0];
-    Fy = (-(m1*m2)*m_G)/pow(r_length,3)*r[1];
+    vec3 rb = b.getPosition();
+    vec3 ra = a.getPosition();
+    double r_length = (rb.operator -=(ra)).length();
+    Fx = (-(m1*m2)*m_G)/pow(r_length,3)*rb[0];
+    Fy = (-(m1*m2)*m_G)/pow(r_length,3)*rb[1];
     b.addForce(Fx, Fy, 0);
 }
 
