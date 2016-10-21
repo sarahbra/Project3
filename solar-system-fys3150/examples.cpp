@@ -15,12 +15,12 @@ void Examples::twoBodyProblem() {
     double G = 1.0;
 
     System* twoBodySystem = new System();
-    twoBodySystem->setIntegrator        (new VelocityVerlet(twoBodySystem));
-    twoBodySystem->setPotential         (new NewtonianGravity(G));
+    twoBodySystem->setIntegrator        (new EulerCromer(twoBodySystem));
+    twoBodySystem->setPotential         (new Potential());
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
     twoBodySystem->removeLinearMomentum ();
-    twoBodySystem->integrate            (5000);
+    twoBodySystem->integrate            (100);
 }
 
 void Examples::threeBodyProblem() {
