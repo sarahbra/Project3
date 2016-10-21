@@ -76,10 +76,12 @@ double System::computeKineticEnergy() {
      * Particle::velocitySquared which can be used here.
      */
     m_kineticEnergy = 0;
-    // for(int i = 0; i<m_numberOfParticles; i++) {
-    //     vec3 v_squared = m_particles.at(i).getVelocity();
-     //   m_kineticEnergy += m_particles.at(i).getMass()*v_squared;
-   // }
+    for(int i = 0; i<m_numberOfParticles; i++) {
+        Particle *p = m_particles.at(i);
+        double v_squared = p->velocitySquared();
+        m_kineticEnergy += p->getMass()*v_squared;
+        std::cout << "kE" << m_kineticEnergy << std::endl;
+    }
     return m_kineticEnergy;
 }
 
