@@ -12,7 +12,8 @@
 
 
 void Examples::twoBodyProblem() {
-    double G = 1.0;
+    double pi = std::atan(1)*4;
+    double G = (4*pi*pi)/(2e30);
 
     System* twoBodySystem = new System();
     twoBodySystem->setIntegrator        (new EulerCromer(twoBodySystem));
