@@ -6,6 +6,7 @@
 #include "Potentials/newtoniangravity.h"
 #include "InitialConditions/twobody.h"
 #include "InitialConditions/threebody.h"
+#include "InitialConditions/solarsystem.h"
 #include <iostream>
 #include <cmath>
 
@@ -32,5 +33,15 @@ void Examples::threeBodyProblem() {
     threeBodySystem->removeLinearMomentum  ();
     threeBodySystem->integrate             (100000);
 
+}
+
+void Examples::manyBodyProblem() {
+    System* manyBodySystem = new System();
+    manyBodySystem->setIntegrator         (new VelocityVerlet(manyBodySystem));
+    manyBodySystem->setPotential          (new NewtonianGravity(G));
+    manyBodySystem->setInitialCondition   (new SolarSystem());
+    manyBodySystem->setFileWriting        (true);
+    manyBodySystem->removeLinearMomentum  ();
+    manyBodySystem->integrate             (100000);
 }
 

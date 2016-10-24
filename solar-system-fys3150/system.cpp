@@ -108,7 +108,7 @@ void System::printIntegrateInfo(int stepNumber) {
         computePotentialEnergy();
         computeTotalMomentum();
         m_totalEnergy       = m_kineticEnergy + m_potentialEnergy;
-        printf("Step: %5d    E =%10.5f   Ek =%10.5f    Ep =%10.5f\n    M=%10.5f"   ,
+        printf("Step: %5d   E =%8.5f   Ek =%8.5f   Ep =%8.5f   M=%8.5f\n"   ,
                stepNumber, m_totalEnergy, m_kineticEnergy, m_potentialEnergy, m_totalMomentum);
         fflush(stdout);
     }
@@ -131,8 +131,9 @@ void System::computeTotalMomentum()  {
     m_totalMomentum = 0;
     vec3 v_temp = vec3(0,0,0);
     for (int i = 0; i<m_numberOfParticles; i++)  {
-        double m = m_particles.at(i)->getMass();
-        v_temp = m_particles.at(i)->getVelocity();
+        Particle *p = m_particles.at(i);
+        double m = p->getMass();
+        v_temp = p->getVelocity();
 
         totalMomentum.operator += (v_temp.operator *=(m));
     }
