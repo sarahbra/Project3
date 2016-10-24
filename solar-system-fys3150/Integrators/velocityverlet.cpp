@@ -28,7 +28,7 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
 
         v.operator *=(dt);
         p->getPosition().operator += (v);
-        p->getPosition().operator +=(a1.operator *=(temp*dt));
+        p->getPosition().operator +=(F1.operator *=(temp*dt));
 
         m_system->computeForces();
 
