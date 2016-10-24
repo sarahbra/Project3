@@ -17,8 +17,8 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
     vec3 ra = a.getPosition();
     vec3 r = rb.operator -=(ra);
     double r_length = r.length();
-    Fxa = (-(m1*m2)*m_G)/pow(r_length,3)*ra[0];
-    Fya = (-(m1*m2)*m_G)/pow(r_length,3)*ra[1];
+    Fxa = ((m1*m2)*m_G)/pow(r_length,3)*ra[0];
+    Fya = ((m1*m2)*m_G)/pow(r_length,3)*ra[1];
     Fxb = (-(m1*m2)*m_G)/pow(r_length,3)*rb[0];
     Fyb = (-(m1*m2)*m_G)/pow(r_length,3)*rb[1];
     a.addForce(Fxa, Fya, 0);

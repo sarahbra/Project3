@@ -18,6 +18,7 @@ SOURCES += main.cpp \
     Integrators/euler.cpp \
     InitialConditions/solarsystem.cpp
 
+
 HEADERS += \
     vec3.h \
     system.h \

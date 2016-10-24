@@ -3,7 +3,7 @@
 #include "Potentials/potential.h"
 #include "InitialConditions/initialcondition.h"
 #include "particle.h"
-
+#include "time.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -47,6 +47,9 @@ void System::setDt(double dt) {
 }
 
 void System::integrate(int numberOfSteps) {
+    clock_t start, finish;
+    start = clock();
+
     m_integrateSteps = numberOfSteps;
     printIntegrateInfo(0);
     for (int i=1; i<numberOfSteps+1; i++) {
@@ -54,6 +57,10 @@ void System::integrate(int numberOfSteps) {
         printIntegrateInfo(i);
         writePositionsToFile();
     }
+    finish =clock();
+    double t = ((finish-start));
+    double seconds = t/CLOCKS_PER_SEC;
+    cout << "Time computations took:    " << seconds <<"s"<< endl;
     closeOutFile();
 }
 

@@ -15,7 +15,7 @@ double G = 4*pi*pi;
 void Examples::twoBodyProblem() {
 
     System* twoBodySystem = new System();
-    twoBodySystem->setIntegrator        (new VelocityVerlet(twoBodySystem));
+    twoBodySystem->setIntegrator        (new Euler(twoBodySystem));
     twoBodySystem->setPotential         (new NewtonianGravity(G));
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
