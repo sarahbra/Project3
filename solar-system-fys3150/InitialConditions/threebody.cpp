@@ -16,5 +16,5 @@ void ThreeBody::setupParticles(System &system) {
 }
 
 std::string ThreeBody::getName() {
-    return "Three-body Sun-Earth-Jupiter";
+    return "Three-body";
 }
