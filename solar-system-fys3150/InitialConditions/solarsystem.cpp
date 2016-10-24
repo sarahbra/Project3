@@ -30,6 +30,6 @@ void SolarSystem::setupParticles(System &system) {
 }
 
 std::string SolarSystem::getName() {
-        return "Three-body Solar-system";
+        return "Many-Body Solar-system";
 
 }
