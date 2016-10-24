@@ -10,7 +10,7 @@ using std::endl;
 
 
 void System::computeForces() {
-
+    //resetting forces and potential energy before calculating new forces
     resetAllForces();
     m_potential->resetPotentialEnergy();
 
@@ -75,7 +75,7 @@ double System::computeKineticEnergy() {
     for(int i = 0; i<m_numberOfParticles; i++) {
         Particle *p = m_particles.at(i);
         double v_squared = p->velocitySquared();
-        m_kineticEnergy += p->getMass()*v_squared;
+        m_kineticEnergy += (v_squared *p->getMass());
     }
     return m_kineticEnergy;
 }
