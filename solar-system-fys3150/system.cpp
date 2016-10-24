@@ -72,7 +72,7 @@ void System::addParticle(Particle* p) {
     m_numberOfParticles += 1;
 }
 
-double System::computeKineticEnergy() {
+void System::computeKineticEnergy() {
     m_kineticEnergy = 0;
 
     for(int i = 0; i<m_numberOfParticles; i++) {
@@ -80,7 +80,6 @@ double System::computeKineticEnergy() {
         double v_squared = p->velocitySquared();
         m_kineticEnergy += (v_squared *p->getMass());
     }
-    return m_kineticEnergy;
 }
 
 void System::computePotentialEnergy() {
@@ -105,10 +104,10 @@ void System::printIntegrateInfo(int stepNumber) {
              << "  o Integrator in use:   " << m_integrator->getName() << endl
              << endl;
     } else if (stepNumber % 1000 == 0) {
-        m_kineticEnergy     = computeKineticEnergy();
-        m_potentialEnergy   = m_potential->getPotentialEnergy();
+        computeKineticEnergy();
+        computePotentialEnergy();
+        computeTotalMomentum();
         m_totalEnergy       = m_kineticEnergy + m_potentialEnergy;
-        m_totalMomentum     = getTotalMomentum();
         printf("Step: %5d    E =%10.5f   Ek =%10.5f    Ep =%10.5f\n    M=%10.5f"   ,
                stepNumber, m_totalEnergy, m_kineticEnergy, m_potentialEnergy, m_totalMomentum);
         fflush(stdout);
@@ -127,7 +126,7 @@ void System::removeLinearMomentum() {
     m_particles.at(0)->getVelocity().operator -=(totalMomentum);
 }
 
-double System::getTotalMomentum()  {
+void System::computeTotalMomentum()  {
     vec3 totalMomentum = vec3(0,0,0);
     m_totalMomentum = 0;
     vec3 v_temp = vec3(0,0,0);
@@ -139,7 +138,6 @@ double System::getTotalMomentum()  {
     }
 
     m_totalMomentum = totalMomentum.length();
-    return m_totalMomentum;
 }
 
 void System::setFileWriting(bool writeToFile) {
