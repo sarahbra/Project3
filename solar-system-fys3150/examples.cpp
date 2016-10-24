@@ -23,22 +23,14 @@ void Examples::twoBodyProblem() {
     twoBodySystem->integrate            (8000);
 
 }
-/*
- void Examples::threeBodyProblem() {
+void Examples::threeBodyProblem() {
     System* threeBodySystem = new System();
     threeBodySystem->setIntegrator         (new VelocityVerlet(threeBodySystem));
     threeBodySystem->setPotential          (new NewtonianGravity(G));
     threeBodySystem->setInitialCondition   (new ThreeBody());
     threeBodySystem->setFileWriting        (true);
     threeBodySystem->removeLinearMomentum  ();
-    threeBodySystem->integrate             (200000);
+    threeBodySystem->integrate             (8000);
 
+}
 
-     * This is where you should set up a three-body problem, using the
-     * InitialCondition::ThreeBody class as System's InitialCondition.
-     *
-     * You should start by considering the two-body case in
-     * Examples::twoBodyProblem, before continuing with this more complicated
-     * case.
- }
- */

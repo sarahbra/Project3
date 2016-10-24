@@ -1,8 +1,9 @@
 #include "solarsystem.h"
 #include "../vec3.h"
 #include "../system.h"
+#include <cmath>
 
-void ThreeBody::setupParticles(System &system) {
+void SolarSystem::setupParticles(System &system) {
     double pi = std::atan(1.0)*4;
 
     Particle* sun = new Particle(vec3(0,0,0), vec3(0,0,0), 1.0);
@@ -30,6 +31,5 @@ void ThreeBody::setupParticles(System &system) {
 
 std::string SolarSystem::getName() {
         return "Three-body Solar-system";
-    }
 
 }

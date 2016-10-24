@@ -1,7 +1,5 @@
 #pragma once
 #include "../InitialConditions/initialcondition.h"
-#include "../particle.h"
-#include <vector>
 #include <string>
 
 

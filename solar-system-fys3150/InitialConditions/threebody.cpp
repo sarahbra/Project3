@@ -1,6 +1,7 @@
 #include "threebody.h"
 #include "../vec3.h"
 #include "../system.h"
+#include <cmath>
 
 void ThreeBody::setupParticles(System &system) {
     double pi = std::atan(1.0)*4;
