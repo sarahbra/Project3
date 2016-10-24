@@ -53,6 +53,7 @@ void System::integrate(int numberOfSteps) {
 
     m_integrateSteps = numberOfSteps;
     printIntegrateInfo(0);
+    removeLinearMomentum();
     for (int i=1; i<numberOfSteps+1; i++) {
         m_integrator->integrateOneStep(m_particles);
         printIntegrateInfo(i);
@@ -104,15 +105,13 @@ void System::printIntegrateInfo(int stepNumber) {
 }
 
 void System::removeLinearMomentum() {
-
-    vec3 totalMomentum = vec3(0,0,0);
     for (int i = 0; i<m_numberOfParticles; i++)  {
         double m = m_particles.at(i)->getMass();
         vec3 v_temp = m_particles.at(i)->getVelocity();
 
-        totalMomentum.operator -= (v_temp.operator *=(m));
+        totalMomentum.operator += (v_temp.operator *=(m));
     }
-
+    m_particles.at(i)->getVelocity().operator -= (totalMomentum);
 }
 
 void System::setFileWriting(bool writeToFile) {
