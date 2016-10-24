@@ -21,7 +21,6 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
         double dt = getDt();
         double m = p->getMass();
 
-
         vec3 F1 = p->getForce();
         vec3 a1 = F1.operator /=(m);
         vec3 v = p->getVelocity();
