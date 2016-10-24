@@ -26,7 +26,6 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
 
         vec3 v = p->getVelocity();
         double temp = dt/2;
-        double temp2 = (dt*dt)/2;
 
 
 
