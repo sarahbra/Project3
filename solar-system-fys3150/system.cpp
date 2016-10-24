@@ -139,12 +139,16 @@ void System::writePositionsToFile() {
      *
      * Which format you choose for the data file is up to you.
      */
-    Particle *p = m_particles.at(1);
-    vec3 r = p->getPosition();
-    double x = r[0];
-    double y = r[1];
+    double x[m_numberOfParticles];
+    double y[m_numberOfParticles];
+    for (int i = 0; i<m_numberOfParticles; i++) {
+        Particle *p = m_particles.at(i);
+        vec3 r = p->getPosition();
+        x[i] = r[0];
+        y[i] = r[1];
 
-    m_outFile << x <<  "," << y << endl;
+        m_outFile << x[i] <<  "," << y[i]<< ",";
+    } m_outFile << endl;
 }
 
 void System::closeOutFile() {

@@ -2,11 +2,9 @@
 #include "../InitialConditions/initialcondition.h"
 #include <string>
 
-
-class TwoBody : public InitialCondition {
+class SolarSystem : public InitialCondition {
 public:
-    TwoBody() {}
+    SolarSystem() {}
     void setupParticles(class System& system);
     std::string getName();
 };
-
