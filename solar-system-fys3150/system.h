@@ -17,6 +17,7 @@ private:
     class InitialCondition*     m_initialCondition  = nullptr;
     std::ofstream               m_outFile;
     std::vector<Particle*>      m_particles;
+    double                      m_totalMomentum     =0;
 
 public:
     System() {}
@@ -34,5 +35,6 @@ public:
     void writePositionsToFile   ();
     void closeOutFile           ();
     double computeKineticEnergy ();
+    double getTotalMomentum     ();
 };
 
