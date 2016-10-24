@@ -20,7 +20,6 @@ void Examples::twoBodyProblemEuler() {
     twoBodySystem->setPotential         (new NewtonianGravity(G));
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
-    twoBodySystem->removeLinearMomentum ();
     twoBodySystem->integrate            (100000);
 
 }
@@ -40,7 +39,7 @@ void Examples::threeBodyProblemOriginSun() {
     threeBodySystem->setPotential          (new NewtonianGravity(G));
     threeBodySystem->setInitialCondition   (new ThreeBody());
     threeBodySystem->setFileWriting        (true);
-    threeBodySystem->integrate             (100000);
+    threeBodySystem->integrate             (150000);
 
 }
 
@@ -51,7 +50,7 @@ void Examples::threeBodyProblemCenterOfMass() {
     threeBodySystem->setInitialCondition   (new ThreeBody());
     threeBodySystem->setFileWriting        (true);
     threeBodySystem->removeLinearMomentum  ();
-    threeBodySystem->integrate             (100000);
+    threeBodySystem->integrate             (150000);
 }
 
 void Examples::manyBodyProblem() {
@@ -61,6 +60,6 @@ void Examples::manyBodyProblem() {
     manyBodySystem->setInitialCondition   (new SolarSystem());
     manyBodySystem->setFileWriting        (true);
     manyBodySystem->removeLinearMomentum  ();
-    manyBodySystem->integrate             (100000);
+    manyBodySystem->integrate             (300000);
 }
 

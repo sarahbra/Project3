@@ -103,7 +103,7 @@ void System::printIntegrateInfo(int stepNumber) {
              << "  o Potential in use:    " << m_potential->getName() << endl
              << "  o Integrator in use:   " << m_integrator->getName() << endl
              << endl;
-    } else if (stepNumber % 1000 == 0) {
+    } else if (stepNumber % 10000 == 0) {
         computeKineticEnergy();
         computePotentialEnergy();
         computeTotalMomentum();
