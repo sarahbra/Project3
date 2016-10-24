@@ -4,9 +4,11 @@
 #include "Integrators/euler.h"
 #include "Integrators/velocityverlet.h"
 #include "Potentials/newtoniangravity.h"
+#include "Potentials/newtonianrelativisticgravity.h"
 #include "InitialConditions/twobody.h"
 #include "InitialConditions/threebody.h"
 #include "InitialConditions/solarsystem.h"
+#include "InitialConditions/perihelionprecession.h"
 #include <iostream>
 #include <cmath>
 
@@ -61,5 +63,14 @@ void Examples::manyBodyProblem() {
     manyBodySystem->setFileWriting        (true);
     manyBodySystem->removeLinearMomentum  ();
     manyBodySystem->integrate             (300000);
+}
+
+void Examples::perihelionPrecessionProblem() {
+    System* perihelionPrecessionSystem = new System();
+    perihelionPrecessionSystem->setIntegrator               (new VelocityVerlet(perihelionPrecessionSystem));
+    perihelionPrecessionSystem->setPotential                (new NewtonianRelativisticGravity(G));
+    perihelionPrecessionSystem->setInitialCondition         (new PerihelionPrecession());
+    perihelionPrecessionSystem->setFileWriting              (true);
+    perihelionPrecessionSystem->integratePerihelionAngle    (10e6);
 }
 

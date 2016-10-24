@@ -13,6 +13,10 @@ private:
     double                      m_kineticEnergy     = 0;
     double                      m_totalEnergy       = 0;
     double                      m_potentialEnergy   = 0;
+    double                      m_rPreviousPrevious = 0;
+    double                      m_rPrevious         = 0;
+    double                      m_angle             = 0.0;
+    vec3                        m_rPreviousPosition = vec3(0,0,0);
     class Integrator*           m_integrator        = nullptr;
     class Potential*            m_potential         = nullptr;
     class InitialCondition*     m_initialCondition  = nullptr;
@@ -30,6 +34,7 @@ public:
     void setInitialCondition    (class InitialCondition* initialCondition);
     void setDt                  (double dt);
     void integrate              (int numberOfSteps);
+    void integratePerihelionAngle (int numberOfSteps);
     void addParticle            (Particle* p);
     void printIntegrateInfo     (int stepNumber);
     void removeLinearMomentum   ();

@@ -5,6 +5,7 @@
 #include "particle.h"
 #include "time.h"
 #include <iostream>
+#include <cmath>
 using std::cout;
 using std::endl;
 
@@ -82,6 +83,32 @@ void System::computeKineticEnergy() {
     }
 }
 
+void System::integratePerihelionAngle(int numberOfSteps) {
+    m_integrateSteps = numberOfSteps;
+    printIntegrateInfo(0);
+    removeLinearMomentum();
+    for (int i=1; i<numberOfSteps+1; i++) {
+        m_integrator->integrateOneStep(m_particles);
+        vec3 temp = m_particles[1]->getPosition();
+        temp.operator -=(m_particles[0]->getPosition());
+        double rCurrent = temp.length();
+        if ( rCurrent > m_rPrevious && m_rPrevious < m_rPreviousPrevious ) {
+
+                // If we are perihelion, print *previous* angle (in radians) to terminal.
+                double x = m_rPreviousPosition[0];
+                double y = m_rPreviousPosition[1];
+                m_angle = atan2(y,x);
+        printIntegrateInfo(i);
+        writePositionsToFile();
+    }
+    m_rPreviousPrevious = m_rPrevious;
+    m_rPrevious = rCurrent;
+    m_rPreviousPosition = m_particles[1]->getPosition().operator -= (m_particles[0]->getPosition());
+     closeOutFile();
+    }
+
+}
+
 void System::computePotentialEnergy() {
     m_potentialEnergy = 0;
     for (int i=0; i<m_numberOfParticles; i++) {
@@ -109,7 +136,7 @@ void System::printIntegrateInfo(int stepNumber) {
         computeTotalMomentum();
         m_totalEnergy       = m_kineticEnergy + m_potentialEnergy;
         printf("Step: %5d   E =%8.5f   Ek =%8.5f   Ep =%8.5f   M=%8.5f\n"   ,
-               stepNumber, m_totalEnergy, m_kineticEnergy, m_potentialEnergy, m_totalMomentum);
+            stepNumber, m_totalEnergy, m_kineticEnergy, m_potentialEnergy, m_totalMomentum);
         fflush(stdout);
     }
 }
@@ -143,18 +170,22 @@ void System::writePositionsToFile() {
         m_outFileOpen = true;
     }
 
-    double x[m_numberOfParticles];
-    double y[m_numberOfParticles];
-    for (int i = 0; i<m_numberOfParticles; i++) {
-        Particle *p = m_particles.at(i);
-        vec3 r = p->getPosition();
-        x[i] = r[0];
-        y[i] = r[1];
+    if (m_angle!=0.0) {
+        m_outFile << m_angle;
+    } else {
 
-        if (i<(m_numberOfParticles-1)) {
-            m_outFile << x[i] <<  "," << y[i]<< ",";
-        } else {
-            m_outFile << x[i] << "," << y[i];
+        double x[m_numberOfParticles];
+        double y[m_numberOfParticles];
+        for (int i = 0; i<m_numberOfParticles; i++) {
+            Particle *p = m_particles.at(i);
+            vec3 r = p->getPosition();
+            x[i] = r[0];
+            y[i] = r[1];
+            if (i<(m_numberOfParticles-1)) {
+                m_outFile << x[i] <<  "," << y[i]<< ",";
+            } else {
+                m_outFile << x[i] << "," << y[i];
+            }
         }
     } m_outFile << endl;
 }
