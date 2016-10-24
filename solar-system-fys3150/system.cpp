@@ -26,6 +26,7 @@ void System::computeForces() {
 void System::resetAllForces() {
     for (int i=0; i<m_numberOfParticles; i++) {
         m_particles.at(i)->resetForces();
+        m_particles.at(i)->resetPotentialEnergy();
     }
 }
 
@@ -82,6 +83,15 @@ double System::computeKineticEnergy() {
     return m_kineticEnergy;
 }
 
+void System::computePotentialEnergy() {
+    m_potentialEnergy = 0;
+    for (int i=0; i<m_numberOfParticles; i++) {
+        Particle *p = m_particles.at(i);
+        m_potentialEnergy += p->getPotentialEnergy();
+    }
+
+}
+
 void System::printIntegrateInfo(int stepNumber) {
     if (stepNumber == 0) {
         cout << endl
@@ -113,12 +123,8 @@ void System::removeLinearMomentum() {
 
         totalMomentum.operator += (v_temp.operator *=(m));
     }
-<<<<<<< HEAD
-    m_particles.at(0)->getVelocity().operator -= (totalMomentum);
-=======
-    m_particles.at(0)->getVelocity().operator -=(totalMomentum);
 
->>>>>>> d1406fb03ea992a0ec9fe8d2b6eed650701adfef
+    m_particles.at(0)->getVelocity().operator -=(totalMomentum);
 }
 
 double System::getTotalMomentum()  {

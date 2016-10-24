@@ -24,6 +24,14 @@ void Particle::addForce(double dFx, double dFy, double dFz) {
     m_forces[2] += dFz;
 }
 
+void Particle::resetPotentialEnergy() {
+    m_potential_energy = 0;
+}
+
+void Particle::addPotentialEnergy(double potEnergy) {
+    m_potential_energy += potEnergy;
+}
+
 
 double Particle::velocitySquared() {
     return m_velocity[0]*m_velocity[0] +

@@ -36,5 +36,6 @@ public:
     void closeOutFile           ();
     double computeKineticEnergy ();
     double getTotalMomentum     ();
+    void computePotentialEnergy();
 };
 

@@ -13,7 +13,7 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
     double m1 = a.getMass();
     double m2 = b.getMass();
 
-    double Fxa, Fya, Fxb, Fyb;
+    double Ub, Fxa, Fya, Fxb, Fyb;
 
     vec3 rb = b.getPosition();
     vec3 ra = a.getPosition();
@@ -21,14 +21,16 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
     double r_length = r.length();
 
     //Calculating Newtonian forces (equal, but opposite for particles a and b)
-    Fxa = ((m1*m2)*m_G)/pow(r_length,3)*ra[0];
-    Fya = ((m1*m2)*m_G)/pow(r_length,3)*ra[1];
-    Fxb = (-(m1*m2)*m_G)/pow(r_length,3)*rb[0];
-    Fyb = (-(m1*m2)*m_G)/pow(r_length,3)*rb[1];
+    Ub = (-(m1*m2)*m_G/r_length);
+    Fxa = (-Ub/r.lengthSquared())*ra[0];
+    Fya = (-Ub/r.lengthSquared())*ra[1];
+    Fxb = (Ub/r.lengthSquared())*rb[0];
+    Fyb = (Ub/r.lengthSquared())*rb[1];
 
     //adding forces
     a.addForce(Fxa, Fya, 0);
     b.addForce(Fxb, Fyb, 0);
+    b.addPotentialEnergy(Ub);
 }
 
 std::string NewtonianGravity::getName() {

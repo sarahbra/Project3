@@ -1,10 +1,8 @@
 #include "solarsystem.h"
 #include "../vec3.h"
 #include "../system.h"
-#include <cmath>
 
 void SolarSystem::setupParticles(System &system) {
-    double pi = std::atan(1.0)*4;
 
     Particle* sun = new Particle(vec3(0,0,0), vec3(0,0,0), 1.0);
     Particle* earth = new Particle(vec3(0.90,0.43,0), vec3(-2.83,5.62,0), 3.0e-6);
