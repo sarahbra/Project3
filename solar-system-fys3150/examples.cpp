@@ -21,7 +21,7 @@ void Examples::twoBodyProblemEuler() {
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
     twoBodySystem->removeLinearMomentum ();
-    twoBodySystem->integrate            (100000);
+    twoBodySystem->integrate            (300000);
 
 }
 
@@ -42,7 +42,7 @@ void Examples::threeBodyProblem() {
     threeBodySystem->setInitialCondition   (new ThreeBody());
     threeBodySystem->setFileWriting        (true);
     threeBodySystem->removeLinearMomentum  ();
-    threeBodySystem->integrate             (100000);
+    threeBodySystem->integrate             (300000);
 
 }
 

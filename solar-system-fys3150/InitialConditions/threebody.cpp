@@ -8,7 +8,7 @@ void ThreeBody::setupParticles(System &system) {
 
     Particle* sun = new Particle(vec3(0,0,0), vec3(0,0,0), 1.0);
     Particle* earth = new Particle(vec3(1,0,0), vec3(0,2*pi,0), 3.0e-6);
-    Particle* jupiter = new Particle(vec3(-5.43,-4.82,0), vec3(0.21,-2.61,0), 9.5e-4);
+    Particle* jupiter = new Particle(vec3(-5.43,-4.82,0), vec3(0.21,-2.61,0), 9.5e-3);
 
     system.addParticle(sun);
     system.addParticle(earth);
