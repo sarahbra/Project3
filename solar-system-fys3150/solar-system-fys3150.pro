@@ -15,8 +15,8 @@ SOURCES += main.cpp \
     InitialConditions/initialcondition.cpp \
     InitialConditions/twobody.cpp \
     InitialConditions/threebody.cpp \
-    Integrators/euler.cpp \
-    Integrators/euler.cpp
+    Integrators/euler.cpp 
+
 
 HEADERS += \
     vec3.h \
