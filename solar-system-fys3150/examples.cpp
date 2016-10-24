@@ -13,7 +13,7 @@
 double pi = std::atan(1.0)*4;
 double G = 4*pi*pi;
 
-void Examples::twoBodyProblem() {
+void Examples::twoBodyProblemEuler() {
 
     System* twoBodySystem = new System();
     twoBodySystem->setIntegrator        (new Euler(twoBodySystem));
@@ -24,6 +24,17 @@ void Examples::twoBodyProblem() {
     twoBodySystem->integrate            (100000);
 
 }
+
+void Examples::twoBodyProblemVelVerlet() {
+    System* twoBodySystem = new System();
+    twoBodySystem->setIntegrator        (new VelocityVerlet(twoBodySystem));
+    twoBodySystem->setPotential         (new NewtonianGravity(G));
+    twoBodySystem->setInitialCondition  (new TwoBody());
+    twoBodySystem->setFileWriting       (true);
+    twoBodySystem->removeLinearMomentum ();
+    twoBodySystem->integrate            (100000);
+}
+
 void Examples::threeBodyProblem() {
     System* threeBodySystem = new System();
     threeBodySystem->setIntegrator         (new VelocityVerlet(threeBodySystem));
