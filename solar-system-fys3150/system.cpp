@@ -114,20 +114,13 @@ void System::printIntegrateInfo(int stepNumber) {
     }
 }
 
-void System::removeLinearMomentum() {
-    vec3 totalMomentum(0,0,0);
-    for (int i = 0; i<m_numberOfParticles; i++)  {
-        double m = m_particles.at(i)->getMass();
-        vec3 v_temp = m_particles.at(i)->getVelocity();
-
-        totalMomentum.operator += (v_temp.operator *=(m));
-    }
-
-    m_particles.at(0)->getVelocity().operator -=(totalMomentum);
+void System::removeLinearMomentum() { 
+    computeTotalMomentum();
+    m_particles.at(0)->getVelocity().operator -=(m_vecMomentum);
 }
 
 void System::computeTotalMomentum()  {
-    vec3 totalMomentum = vec3(0,0,0);
+    m_vecMomentum = vec3(0,0,0);
     m_totalMomentum = 0;
     vec3 v_temp = vec3(0,0,0);
     for (int i = 0; i<m_numberOfParticles; i++)  {
@@ -135,10 +128,9 @@ void System::computeTotalMomentum()  {
         double m = p->getMass();
         v_temp = p->getVelocity();
 
-        totalMomentum.operator += (v_temp.operator *=(m));
+        m_vecMomentum.operator += (v_temp.operator *=(m));
     }
-
-    m_totalMomentum = totalMomentum.length();
+    m_totalMomentum = m_vecMomentum.length();
 }
 
 void System::setFileWriting(bool writeToFile) {

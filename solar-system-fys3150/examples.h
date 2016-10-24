@@ -4,6 +4,7 @@ class Examples {
 public:
     static void twoBodyProblemEuler();
     static void twoBodyProblemVelVerlet();
-    static void threeBodyProblem();
+    static void threeBodyProblemOriginSun();
+    static void threeBodyProblemCenterOfMass();
     static void manyBodyProblem();
 };
