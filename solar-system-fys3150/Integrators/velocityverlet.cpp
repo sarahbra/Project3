@@ -29,6 +29,10 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
         double temp2 = (dt*dt)/2;
 
 
+
+        v.operator *=(dt);
+
+
         p->getPosition().operator += (v);
 
         p->getPosition().operator +=(F1.operator *=(temp*dt));
@@ -36,11 +40,10 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
 
         m_system->computeForces();
 
-        vec3 F2 = p->getForce();
-        vec3 a2 = F2.operator /=(m);
-
+        vec3 a2 = p->getForce().operator /=(m);
         a2.operator +=(a1);
         a2.operator *=(temp);
+
         p->getVelocity().operator +=(a2);
     }
 }
