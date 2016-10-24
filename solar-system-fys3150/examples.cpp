@@ -20,8 +20,12 @@ void Examples::twoBodyProblemEuler() {
     twoBodySystem->setPotential         (new NewtonianGravity(G));
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
+<<<<<<< HEAD
     twoBodySystem->removeLinearMomentum ();
     twoBodySystem->integrate            (300000);
+=======
+    twoBodySystem->integrate            (100000);
+>>>>>>> 7e61dc4c701a1e6dd8b029abfb61325ee1d915ad
 
 }
 
@@ -31,19 +35,32 @@ void Examples::twoBodyProblemVelVerlet() {
     twoBodySystem->setPotential         (new NewtonianGravity(G));
     twoBodySystem->setInitialCondition  (new TwoBody());
     twoBodySystem->setFileWriting       (true);
-    twoBodySystem->removeLinearMomentum ();
     twoBodySystem->integrate            (100000);
 }
 
-void Examples::threeBodyProblem() {
+void Examples::threeBodyProblemOriginSun() {
+    System* threeBodySystem = new System();
+    threeBodySystem->setIntegrator         (new VelocityVerlet(threeBodySystem));
+    threeBodySystem->setPotential          (new NewtonianGravity(G));
+    threeBodySystem->setInitialCondition   (new ThreeBody());
+    threeBodySystem->setFileWriting        (true);
+<<<<<<< HEAD
+    threeBodySystem->removeLinearMomentum  ();
+    threeBodySystem->integrate             (300000);
+=======
+    threeBodySystem->integrate             (150000);
+
+}
+>>>>>>> 7e61dc4c701a1e6dd8b029abfb61325ee1d915ad
+
+void Examples::threeBodyProblemCenterOfMass() {
     System* threeBodySystem = new System();
     threeBodySystem->setIntegrator         (new VelocityVerlet(threeBodySystem));
     threeBodySystem->setPotential          (new NewtonianGravity(G));
     threeBodySystem->setInitialCondition   (new ThreeBody());
     threeBodySystem->setFileWriting        (true);
     threeBodySystem->removeLinearMomentum  ();
-    threeBodySystem->integrate             (300000);
-
+    threeBodySystem->integrate             (150000);
 }
 
 void Examples::manyBodyProblem() {
@@ -53,6 +70,6 @@ void Examples::manyBodyProblem() {
     manyBodySystem->setInitialCondition   (new SolarSystem());
     manyBodySystem->setFileWriting        (true);
     manyBodySystem->removeLinearMomentum  ();
-    manyBodySystem->integrate             (100000);
+    manyBodySystem->integrate             (300000);
 }
 

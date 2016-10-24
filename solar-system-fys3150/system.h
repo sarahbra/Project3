@@ -2,6 +2,7 @@
 #include "particle.h"
 #include <vector>
 #include <fstream>
+#include "vec3.h"
 
 class System {
 private:
@@ -18,6 +19,7 @@ private:
     std::ofstream               m_outFile;
     std::vector<Particle*>      m_particles;
     double                      m_totalMomentum     =0;
+    vec3                        m_vecMomentum       =vec3(0,0,0);
 
 public:
     System() {}
