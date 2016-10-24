@@ -36,7 +36,7 @@ void VelocityVerlet::integrateOneStep(std::vector<Particle*> particles) {
         vec3 a2 = F2.operator /=(m);
 
         a2.operator +=(a1);
-        a2.operator *=(dt);
+        a2.operator *=(temp);
         p->getVelocity().operator +=(a2);
     }
 }
