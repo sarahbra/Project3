@@ -34,8 +34,8 @@ public:
     void setFileWriting         (bool writeToFile);
     void writePositionsToFile   ();
     void closeOutFile           ();
-    double computeKineticEnergy ();
-    double getTotalMomentum     ();
-    void computePotentialEnergy();
+    void computeKineticEnergy   ();
+    void computeTotalMomentum   ();
+    void computePotentialEnergy ();
 };
 
