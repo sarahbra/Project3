@@ -131,14 +131,7 @@ void System::writePositionsToFile() {
         m_outFile.open("positions.dat", std::ios::out);
         m_outFileOpen = true;
     }
-    /*
-     * This is where you should print the positions of each particle to file.
-     * Note that the file, "positions.dat", is already open; it is opened in
-     * the above if-test the first time this method is called in
-     * System::Integrate.
-     *
-     * Which format you choose for the data file is up to you.
-     */
+
     double x[m_numberOfParticles];
     double y[m_numberOfParticles];
     for (int i = 0; i<m_numberOfParticles; i++) {
