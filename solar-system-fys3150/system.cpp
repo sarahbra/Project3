@@ -105,13 +105,14 @@ void System::printIntegrateInfo(int stepNumber) {
 }
 
 void System::removeLinearMomentum() {
+    vec3 totalMomentum(0,0,0);
     for (int i = 0; i<m_numberOfParticles; i++)  {
         double m = m_particles.at(i)->getMass();
         vec3 v_temp = m_particles.at(i)->getVelocity();
 
         totalMomentum.operator += (v_temp.operator *=(m));
     }
-    m_particles.at(i)->getVelocity().operator -= (totalMomentum);
+    m_particles.at(0)->getVelocity().operator -= (totalMomentum);
 }
 
 void System::setFileWriting(bool writeToFile) {
