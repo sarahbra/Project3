@@ -103,21 +103,6 @@ void System::printIntegrateInfo(int stepNumber) {
 }
 
 void System::removeLinearMomentum() {
-    /*
-     * Here you should remove the total momentum of the entire system, to
-     * ensure the entire system does not drift away during long integration
-     * times.
-     *
-     * Remember that you can access the mass and velocity of particle i by
-     *
-     *      m_particles.at(i)->getMass();
-     *      m_particles.at(i)->getVelocity();
-     *
-     * Remember also that the vec3-vector class supports the += and -=
-     * operators, so you can do
-     *
-     *      totalMomentum += p->getVelocity() * p->getMass();
-     */
 
     vec3 totalMomentum = vec3(0,0,0);
 }
