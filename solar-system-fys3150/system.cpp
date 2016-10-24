@@ -140,7 +140,11 @@ void System::writePositionsToFile() {
         x[i] = r[0];
         y[i] = r[1];
 
-        m_outFile << x[i] <<  "," << y[i]<< ",";
+        if (i<(m_numberOfParticles-1)) {
+            m_outFile << x[i] <<  "," << y[i]<< ",";
+        } else {
+            m_outFile << x[i] << "," << y[i];
+        }
     } m_outFile << endl;
 }
 
