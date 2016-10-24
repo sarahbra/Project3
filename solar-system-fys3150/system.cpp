@@ -29,6 +29,7 @@ void System::resetAllForces() {
     }
 }
 
+
 void System::setPotential(Potential* potential) {
     m_potential = potential;
 }
@@ -120,6 +121,13 @@ void System::removeLinearMomentum() {
      */
 
     vec3 totalMomentum = vec3(0,0,0);
+    for (int i = 0; i<m_numberOfParticles; i++)  {
+        double m = m_particles.at(i)->getMass();
+        vec3 v_temp = m_particles.at(i)->getVelocity();
+
+        totalMomentum.operator -= (v_temp.operator *=(m));
+    }
+
 }
 
 void System::setFileWriting(bool writeToFile) {
