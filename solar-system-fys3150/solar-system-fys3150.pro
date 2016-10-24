@@ -17,7 +17,7 @@ SOURCES += main.cpp \
     InitialConditions/threebody.cpp \
     Integrators/euler.cpp \
     InitialConditions/solarsystem.cpp \
-    Potentials/newtonianellipticalgravity.cpp
+    Potentials/newtonianrelativisticgravity.cpp
 
 
 HEADERS += \
@@ -34,4 +34,4 @@ HEADERS += \
     InitialConditions/threebody.h \
     Integrators/euler.h \
     InitialConditions/solarsystem.h \
-    Potentials/newtonianellipticalgravity.h
+    Potentials/newtonianrelativisticgravity.h
