@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     InitialConditions/initialcondition.cpp \
     InitialConditions/twobody.cpp \
     InitialConditions/threebody.cpp \
-    Integrators/euler.cpp
+    Integrators/euler.cpp \
+    InitialConditions/solarsystem.cpp
 
 HEADERS += \
     vec3.h \
@@ -29,4 +30,5 @@ HEADERS += \
     InitialConditions/initialcondition.h \
     InitialConditions/twobody.h \
     InitialConditions/threebody.h \
-    Integrators/euler.h
+    Integrators/euler.h \
+    InitialConditions/solarsystem.h
