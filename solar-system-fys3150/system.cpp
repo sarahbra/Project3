@@ -87,26 +87,44 @@ void System::integratePerihelionAngle(int numberOfSteps) {
     m_integrateSteps = numberOfSteps;
     printIntegrateInfo(0);
     removeLinearMomentum();
-    for (int i=1; i<numberOfSteps+1; i++) {
+
+    clock_t start, finish;
+    start = clock();
+
+    double r_PreviousPrevious = 0.0;
+    double r_Previous = 0.0;
+    vec3 r_PreviousPosition = vec3(0,0,0);
+    double angle;
+    for (int i=0; i<numberOfSteps; i++) {
+        angle = 0.0;
         m_integrator->integrateOneStep(m_particles);
         vec3 temp = m_particles[1]->getPosition();
         temp.operator -=(m_particles[0]->getPosition());
-        double rCurrent = temp.length();
-        if ( rCurrent > m_rPrevious && m_rPrevious < m_rPreviousPrevious ) {
+        double r_Current = temp.length();
+        if (m_outFileOpen == false) {
+            m_outFile.open("positions.dat", std::ios::out);
+            m_outFileOpen = true;
+        }
 
-                // If we are perihelion, print *previous* angle (in radians) to terminal.
-                double x = m_rPreviousPosition[0];
-                double y = m_rPreviousPosition[1];
-                m_angle = atan2(y,x);
-        printIntegrateInfo(i);
-        writePositionsToFile();
-    }
-    m_rPreviousPrevious = m_rPrevious;
-    m_rPrevious = rCurrent;
-    m_rPreviousPosition = m_particles[1]->getPosition().operator -= (m_particles[0]->getPosition());
-     closeOutFile();
+        if (r_Current > r_Previous && r_Previous < r_PreviousPrevious ) {
+            // At perihelion
+            double x = r_PreviousPosition[0];
+            double y = r_PreviousPosition[1];
+            angle = atan2(y,x);
+        }
+
+        m_outFile << angle << endl;
+
+        r_PreviousPrevious = r_Previous;
+        r_Previous = r_Current;
+        r_PreviousPosition = m_particles[1]->getPosition().operator -= (m_particles[0]->getPosition());
     }
 
+    m_outFile.close();
+    finish = clock();
+    double t = ((finish-start));
+    double seconds = t/CLOCKS_PER_SEC;
+    cout << "Computations took:    " << seconds <<"s"<< endl;
 }
 
 void System::computePotentialEnergy() {
@@ -115,7 +133,6 @@ void System::computePotentialEnergy() {
         Particle *p = m_particles.at(i);
         m_potentialEnergy += p->getPotentialEnergy();
     }
-
 }
 
 void System::printIntegrateInfo(int stepNumber) {
@@ -170,22 +187,17 @@ void System::writePositionsToFile() {
         m_outFileOpen = true;
     }
 
-    if (m_angle!=0.0) {
-        m_outFile << m_angle;
-    } else {
-
-        double x[m_numberOfParticles];
-        double y[m_numberOfParticles];
-        for (int i = 0; i<m_numberOfParticles; i++) {
-            Particle *p = m_particles.at(i);
-            vec3 r = p->getPosition();
-            x[i] = r[0];
-            y[i] = r[1];
-            if (i<(m_numberOfParticles-1)) {
-                m_outFile << x[i] <<  "," << y[i]<< ",";
-            } else {
-                m_outFile << x[i] << "," << y[i];
-            }
+    double x[m_numberOfParticles];
+    double y[m_numberOfParticles];
+    for (int i = 0; i<m_numberOfParticles; i++) {
+        Particle *p = m_particles.at(i);
+        vec3 r = p->getPosition();
+        x[i] = r[0];
+        y[i] = r[1];
+        if (i<(m_numberOfParticles-1)) {
+            m_outFile << x[i] <<  "," << y[i]<< ",";
+        } else {
+              m_outFile << x[i] << "," << y[i];
         }
     } m_outFile << endl;
 }
