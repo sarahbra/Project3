@@ -34,4 +34,5 @@ HEADERS += \
     InitialConditions/threebody.h \
     Integrators/euler.h \
     InitialConditions/solarsystem.h \
+    Potentials/newtonianrelativisticgravity.h \
     Potentials/newtonianrelativisticgravity.h

@@ -22,7 +22,7 @@ void NewtonianGravity::computeForces(Particle &a, Particle &b) {
 
     //Calculating Newtonian forces (equal, but opposite for particles a and b)
     Ub = (-((m1*m2)*m_G)/r_length);
-    Fxa = (-Ub/r.lengthSquared())*ra[0];
+    Fxa = (-(Ub/r.lengthSquared()))*ra[0];
     Fya = (-Ub/r.lengthSquared())*ra[1];
     Fxb = (Ub/r.lengthSquared())*rb[0];
     Fyb = (Ub/r.lengthSquared())*rb[1];
