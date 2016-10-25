@@ -37,3 +37,4 @@ HEADERS += \
     InitialConditions/solarsystem.h \
     Potentials/newtonianrelativisticgravity.h \
     InitialConditions/perihelionprecession.h
+

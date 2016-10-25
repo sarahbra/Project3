@@ -40,5 +40,6 @@ public:
     void computeKineticEnergy   ();
     void computeTotalMomentum   ();
     void computePotentialEnergy ();
+    void computeMassCenter       ();
 };
 

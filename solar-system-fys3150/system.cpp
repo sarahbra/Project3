@@ -56,6 +56,7 @@ void System::integrate(int numberOfSteps) {
     m_integrateSteps = numberOfSteps;
     printIntegrateInfo(0);
     removeLinearMomentum();
+    computeMassCenter();
     for (int i=1; i<numberOfSteps+1; i++) {
         m_integrator->integrateOneStep(m_particles);
         printIntegrateInfo(i);
@@ -135,6 +136,24 @@ void System::computePotentialEnergy() {
     }
 }
 
+void System::computeMassCenter()  {
+    vec3 mass_center = vec3(0,0,0);
+    double m_sum = 0;
+    vec3 r = vec3(0,0,0);
+    for (int i = 0; i<m_numberOfParticles; i++)  {
+        r = vec3(0,0,0);
+        r = m_particles.at(i)->getPosition();
+        mass_center.operator +=(r.operator *=(m_particles.at(i)->getMass()));
+        m_sum += m_particles.at(i)->getMass();
+    }
+
+    mass_center.operator /=(m_sum);
+
+    for ( int i = 0; i<m_numberOfParticles; i++)  {
+        m_particles.at(i)->getVelocity().operator-=(mass_center);
+    }
+}
+
 void System::printIntegrateInfo(int stepNumber) {
     if (stepNumber == 0) {
         cout << endl
@@ -161,6 +180,8 @@ void System::printIntegrateInfo(int stepNumber) {
 void System::removeLinearMomentum() { 
     computeTotalMomentum();
     m_particles.at(0)->getVelocity().operator -=(m_vecMomentum);
+    computeTotalMomentum();
+    cout << "Sun v" << m_particles.at(0)->getVelocity() << "TotalM" << m_vecMomentum<< endl;
 }
 
 void System::computeTotalMomentum()  {
@@ -168,9 +189,9 @@ void System::computeTotalMomentum()  {
     m_totalMomentum = 0;
     vec3 v_temp = vec3(0,0,0);
     for (int i = 0; i<m_numberOfParticles; i++)  {
-        Particle *p = m_particles.at(i);
-        double m = p->getMass();
-        v_temp = p->getVelocity();
+        //Particle *p = m_particles.at(i);
+        double m = m_particles.at(i)->getMass();
+        v_temp = m_particles.at(i)->getVelocity();
 
         m_vecMomentum.operator += (v_temp.operator *=(m));
     }

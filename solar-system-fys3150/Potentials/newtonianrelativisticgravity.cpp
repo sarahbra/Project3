@@ -2,6 +2,7 @@
 #include <cmath>
 
 
+
 NewtonianRelativisticGravity::NewtonianRelativisticGravity(double G) : m_G(G) {
 
 }
