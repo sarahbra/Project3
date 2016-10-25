@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     InitialConditions/threebody.cpp \
     Integrators/euler.cpp \
     InitialConditions/solarsystem.cpp \
-    Potentials/newtonianrelativisticgravity.cpp
+    Potentials/newtonianrelativisticgravity.cpp \
+    InitialConditions/perihelionprecession.cpp
 
 
 HEADERS += \
@@ -35,4 +36,5 @@ HEADERS += \
     Integrators/euler.h \
     InitialConditions/solarsystem.h \
     Potentials/newtonianrelativisticgravity.h \
-    Potentials/newtonianrelativisticgravity.h
+    InitialConditions/perihelionprecession.h
+

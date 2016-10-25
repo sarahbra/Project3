@@ -7,4 +7,5 @@ public:
     static void threeBodyProblemOriginSun();
     static void threeBodyProblemCenterOfMass();
     static void manyBodyProblem();
+    static void perihelionPrecessionProblem();
 };
